@@ -24,6 +24,7 @@ macro_rules! species {
     };
 }
 
+species! {hydrogen2, HYDROGEN2, (hydrogen(), 2)}
 species! {water, WATER, (hydrogen(), 2), (oxygen(), 1)}
 species! {carbon_monoxide, CARBON_MONOXIDE, (carbon(), 1), (oxygen(), 1)}
 species! {methane, METHANE, (carbon(), 1), (hydrogen(), 4)}
