@@ -24,6 +24,6 @@ macro_rules! reaction {
 }
 
 // CH4 + H20 -> CO + 3H2
-reaction! {steam_methane_reforming, STEAM_METHANE_REFORMING, operand!((methane(), 1), (water(), 1)), operand!((carbon_monoxide(), 1), (hydrogen2(), 2))}
+reaction! {steam_methane_reforming, STEAM_METHANE_REFORMING, operand!((methane(), 1), (water(), 1)), operand!((carbon_monoxide(), 1), (hydrogen2(), 3))}
 // CO + H20 -> CO2 + H2
 reaction! {water_gas_shift, WATER_GAS_SHIFT, operand!((carbon_monoxide(), 1), (water(), 1)), operand!((carbon_dioxide(), 1), (hydrogen2(), 1))}
