@@ -1,6 +1,8 @@
+use core::fmt;
+
 use crate::atoms::object::Atom;
 
-#[derive(Debug)]
+#[derive(Debug, Hash, PartialEq, Eq)]
 pub struct AtomTuple {
     pub atom: &'static Atom,
     pub size: u16,
@@ -12,7 +14,17 @@ impl AtomTuple {
     }
 }
 
-#[derive(Debug)]
+impl fmt::Display for AtomTuple {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        if self.size > 1 {
+            write!(f, "{}{}", self.atom, self.size)
+        } else {
+            write!(f, "{}", self.atom)
+        }
+    }
+}
+
+#[derive(Debug, Hash, PartialEq, Eq)]
 pub struct ChemicalSpecies {
     pub atom_tuples: Vec<AtomTuple>,
 }
@@ -20,5 +32,23 @@ pub struct ChemicalSpecies {
 impl ChemicalSpecies {
     pub fn new(atom_tuples: Vec<AtomTuple>) -> ChemicalSpecies {
         ChemicalSpecies { atom_tuples }
+    }
+
+    pub fn eq(&self, other: &ChemicalSpecies) -> bool {
+        self.atom_tuples
+            .iter()
+            .filter(|e| !other.atom_tuples.contains(e))
+            .count()
+            == 0
+    }
+}
+
+impl fmt::Display for ChemicalSpecies {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        for tpl in &self.atom_tuples {
+            write!(f, "{}", tpl)?;
+        }
+
+        fmt::Result::Ok(())
     }
 }
